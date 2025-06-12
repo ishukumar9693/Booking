@@ -4,6 +4,7 @@ import com.booking.recruitment.hotel.model.Hotel;
 import com.booking.recruitment.hotel.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,5 +30,30 @@ public class HotelController {
   public Hotel createHotel(@RequestBody Hotel hotel) {
     return hotelService.createNewHotel(hotel);
   }
+
+  @GetMapping("/{id}")
+  ResponseEntity<Hotel> getHotelById(@PathVariable Long id){
+    List<Hotel>hotelList=hotelService.getAllHotels();
+    for(Hotel hotel:hotelList){
+      if(hotel.getId()==id){
+        return ResponseEntity.status(HttpStatus.OK).body(hotel);
+      }
+    }
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+  }
+
+  @DeleteMapping("/{id}")
+  ResponseEntity<String> deleteHotelById(@PathVariable Long id)  {
+    List<Hotel>hotelList=hotelService.getAllHotels();
+    for(Hotel hotel:hotelList){
+      if(hotel.getId()==id){
+        hotelService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Successfully Deleted");
+      }
+    }
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Hotel Not Found");
+  }
+
+
 
 }
