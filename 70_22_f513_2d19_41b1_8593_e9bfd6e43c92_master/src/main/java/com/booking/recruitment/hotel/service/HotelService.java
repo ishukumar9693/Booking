@@ -13,5 +13,6 @@ public interface HotelService {
   Hotel createNewHotel(Hotel hotel);
 
   void deleteById(Long id);
+  List<Hotel>getTop3HotelClosestToCityCentre(Long cityId);
 
 }

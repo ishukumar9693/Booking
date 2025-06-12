@@ -3,6 +3,7 @@ package com.booking.recruitment.hotel.service.impl;
 import com.booking.recruitment.hotel.exception.BadRequestException;
 import com.booking.recruitment.hotel.exception.ElementNotFoundException;
 import com.booking.recruitment.hotel.model.City;
+import com.booking.recruitment.hotel.model.Hotel;
 import com.booking.recruitment.hotel.repository.CityRepository;
 import com.booking.recruitment.hotel.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,4 +40,7 @@ class DefaultCityService implements CityService {
 
     return cityRepository.save(city);
   }
+
+
+
 }
